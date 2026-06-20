@@ -1,7 +1,10 @@
 package com.timetable_generator.Kavit.controller;
 
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,17 +27,28 @@ public class UserController {
     private final UserServiceImpl userService;
     private final SchoolServiceImpl schoolService;
  
-    @GetMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
-          
-             School school = schoolService.createSchool(userDto.getSchoolName());
-            
+    @PostMapping("/create")
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
+          try{
+       School school = schoolService.createSchool(userDto.getSchoolName());
+
              User user = new User();
              user.setEmail(userDto.getEmail());
-             user.setName(userDto.getName());
+             user.setName(userDto.getFullName());
              user.setPassword(userDto.getPassword());
              user.setSchool(school);
-             return ResponseEntity.ok(user);
+             userService.createUser(user);
+             return ResponseEntity.ok(Map.of("success",true,"message","Account created Suucessfully"));
+          }
+          catch( Exception e){
+            return ResponseEntity.status(401).body(Map.of("error",true,"message",e.getMessage()));
+          }
+          
+    }
+
+    @GetMapping("/cre")
+    public String Name (){
+      return "hello world";
     }
     
 }

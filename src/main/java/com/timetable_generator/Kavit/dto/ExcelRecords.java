@@ -1,7 +1,5 @@
 package com.timetable_generator.Kavit.dto;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,12 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-    private Long id;
-    private String fullName;
-    private String email;
-    private String password;
-    private String schoolName;
+public class ExcelRecords {
 
-    
+    private String className;
+    private String teacher;
+    private String subject;
+
 }

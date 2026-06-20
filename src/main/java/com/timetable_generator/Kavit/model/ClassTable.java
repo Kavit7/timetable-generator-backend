@@ -1,10 +1,6 @@
 package com.timetable_generator.Kavit.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +9,18 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name ="status")
-public class Status {
+@Table(name = "class_table")
+public class ClassTable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;    
+    private Long id;
+
     private String name;
+
+    private String defaultRoomName;
+
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    private School school;
 }

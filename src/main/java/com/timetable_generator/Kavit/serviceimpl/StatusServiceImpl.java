@@ -29,8 +29,8 @@ public class StatusServiceImpl implements StatusService {
 
     @Override
     public Status findByName(String status) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
+        Status stat=statusRepository.findByName(status);
+        return stat;
     }
     
 }

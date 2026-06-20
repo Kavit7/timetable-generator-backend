@@ -10,4 +10,5 @@ import com.timetable_generator.Kavit.model.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
     
+    public Role findByName(String name);
 }

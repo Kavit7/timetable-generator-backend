@@ -24,7 +24,7 @@ import jakarta.persistence.JoinColumn;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "User")
+@Table(name = "user")
 public class User implements UserDetails {
 
     @Id
