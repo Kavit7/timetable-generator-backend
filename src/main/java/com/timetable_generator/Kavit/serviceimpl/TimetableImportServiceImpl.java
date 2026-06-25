@@ -17,6 +17,7 @@ import com.timetable_generator.Kavit.repository.ClassSubjectRepository;
 import com.timetable_generator.Kavit.repository.ClassTableRepository;
 import com.timetable_generator.Kavit.repository.SchoolRepository;
 import com.timetable_generator.Kavit.repository.SubjectRepository;
+import com.timetable_generator.Kavit.repository.TeacherAvailabilityRepository;
 import com.timetable_generator.Kavit.repository.TeacherRepository;
 import com.timetable_generator.Kavit.repository.TeacherSubjectClassRepository;
 import com.timetable_generator.Kavit.services.TimetableImportService;
@@ -39,6 +40,7 @@ public class TimetableImportServiceImpl implements TimetableImportService{
    private final SubjectRepository subjectRepository;
    private final ClassSubjectRepository classSubjectRepository;
    private final TeacherSubjectClassRepository teacherSubjectClassRepository;
+   private final TeacherAvailabilityRepository teacherAvailabilityRepository;
 
     @Override
     public void saveImportData(ExcelRequest request) {
@@ -46,8 +48,8 @@ public class TimetableImportServiceImpl implements TimetableImportService{
        School school = schoolRepository.findById(schoolId)
        .orElseThrow( ()-> new RuntimeException("School not found")); 
 
-
-
+       
+                 
        Map<String, ClassTable> classTableCache = new HashMap<>();
        Map<String, Teacher> teacherCache= new HashMap<>();
        Map<String, Subject> subjectCache= new HashMap<>();

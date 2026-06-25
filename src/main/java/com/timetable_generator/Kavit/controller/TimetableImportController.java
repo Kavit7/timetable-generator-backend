@@ -27,8 +27,13 @@ public class TimetableImportController {
     @PostMapping("/import")
     public ResponseEntity<?> importTimetableExcel(@RequestBody ExcelRequest excelRequest){
 
+        try{
         timetableImportServiceImpl.saveImportData(excelRequest);
         return ResponseEntity.ok(Map.of("message","successs fully"));
+        } catch( Exception e){
+   return ResponseEntity.status(401).body(Map.of("error",true,"message", e.getMessage()));
+
+        }
     }
     
 }
